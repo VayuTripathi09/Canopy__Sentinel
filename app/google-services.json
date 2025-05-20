@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "418965077096",
+    "project_id": "canopy-sentinel",
+    "storage_bucket": "canopy-sentinel.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418965077096:android:7cf5819e61c5e662100fdd",
+        "android_client_info": {
+          "package_name": "com.example.canopysentinel"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtJuV6pIY-FKfaiZAGHa1zquDc0MV9sRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
