@@ -16,7 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.171"
-        app:srcCompat="@drawable/ran04" />
+        app:srcCompat="@drawable/ran04"
+        tools:ignore="ContentDescription" />
 
 
     <TextView
@@ -34,7 +35,8 @@
         app:layout_constraintHorizontal_bias="0.761"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.009" />
+        app:layout_constraintVertical_bias="0.009"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textView5"
@@ -51,7 +53,8 @@
         app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.341" />
+        app:layout_constraintVertical_bias="0.341"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textView12"
@@ -68,7 +71,8 @@
         app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.43" />
+        app:layout_constraintVertical_bias="0.43"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textView11"
@@ -84,7 +88,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.547" />
+        app:layout_constraintVertical_bias="0.547"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textView6"
@@ -101,7 +106,8 @@
         app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.664" />
+        app:layout_constraintVertical_bias="0.664"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/button"
@@ -115,7 +121,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.851" />
+        app:layout_constraintVertical_bias="0.851"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textView8"
@@ -130,7 +137,8 @@
         app:layout_constraintHorizontal_bias="0.696"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.308" />
+        app:layout_constraintVertical_bias="0.308"
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/editTextTextPassword1"
@@ -144,7 +152,8 @@
         app:layout_constraintHorizontal_bias="0.963"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.679" />
+        app:layout_constraintVertical_bias="0.679"
+        tools:ignore="Autofill,HardcodedText" />
 
     <EditText
         android:id="@+id/editTextTextPassword2"
@@ -158,7 +167,8 @@
         app:layout_constraintHorizontal_bias="0.963"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.539" />
+        app:layout_constraintVertical_bias="0.539"
+        tools:ignore="Autofill,HardcodedText" />
 
     <EditText
         android:id="@+id/editTextTextPassword3"
@@ -172,7 +182,8 @@
         app:layout_constraintHorizontal_bias="0.963"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.414" />
+        app:layout_constraintVertical_bias="0.414"
+        tools:ignore="Autofill,HardcodedText" />
 
     <EditText
         android:id="@+id/editTextTextPassword4"
@@ -186,6 +197,7 @@
         app:layout_constraintHorizontal_bias="0.963"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.313" />
+        app:layout_constraintVertical_bias="0.313"
+        tools:ignore="Autofill,HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

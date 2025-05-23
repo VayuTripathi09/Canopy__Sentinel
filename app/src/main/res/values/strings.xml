@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Canopy Sentinel</string>
+    <string name="todo">TODO</string>
+    <string name="login">Login</string>
+    <string name="welcome_to_canopy_sentinal">Welcome To Canopy Sentinal</string>
 </resources>

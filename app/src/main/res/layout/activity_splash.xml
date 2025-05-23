@@ -9,19 +9,19 @@
     tools:context=".splash">
 
 
-
-
     <ImageView
         android:id="@+id/logoimg"
         android:layout_width="@dimen/_400sdp"
         android:layout_height="@dimen/_200sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.357"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.033"
-        app:srcCompat="@drawable/ran04" />
+        app:layout_constraintVertical_bias="0.059"
+        app:srcCompat="@drawable/ran04"
+        tools:ignore="ContentDescription" />
+
 
     <TextView
         android:id="@+id/logonameimg"
@@ -29,15 +29,16 @@
         android:layout_height="@dimen/_100sdp"
         android:fontFamily="@font/apptext"
         android:gravity="center"
-        android:text="Welcome To Canopy Sentinal"
+        android:text="@string/welcome_to_canopy_sentinal"
         android:textColor="@color/black"
         android:textSize="@dimen/_15sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintHorizontal_bias="0.278"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.391" />
+        app:layout_constraintVertical_bias="0.396"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:id="@+id/ownone"
@@ -50,23 +51,24 @@
         android:textSize="@dimen/_20sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.761"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.973" />
-
+        app:layout_constraintVertical_bias="0.923"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <ImageView
         android:id="@+id/owntwo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="366dp"
+        android:layout_height="220dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.644"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.669"
-        app:srcCompat="@drawable/ran09" />
+        app:layout_constraintVertical_bias="0.628"
+        app:srcCompat="@drawable/ran09"
+        tools:ignore="ContentDescription" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

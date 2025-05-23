@@ -13,6 +13,7 @@
         android:id="@+id/imageView2"
         android:layout_width="425dp"
         android:layout_height="133dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +27,7 @@
         android:layout_height="127dp"
         android:fontFamily="@font/poppins_regular"
         android:gravity="center"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="@color/black"
         android:textSize="@dimen/_62sdp"
         android:textStyle="bold"
@@ -51,7 +52,8 @@
         app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.522" />
+        app:layout_constraintVertical_bias="0.522"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textView5"
@@ -68,7 +70,8 @@
         app:layout_constraintHorizontal_bias="0.078"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.56" />
+        app:layout_constraintVertical_bias="0.56"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textView6"
@@ -85,7 +88,8 @@
         app:layout_constraintHorizontal_bias="0.078"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.674" />
+        app:layout_constraintVertical_bias="0.674"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <EditText
         android:id="@+id/editTextLogEmail"
@@ -93,6 +97,7 @@
         android:layout_height="@dimen/_52sdp"
         android:ems="10"
         android:hint="Email"
+        android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         android:textColor="@color/black"
         android:textSize="@dimen/_15sdp"
@@ -102,7 +107,8 @@
         app:layout_constraintHorizontal_bias="0.328"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.615" />
+        app:layout_constraintVertical_bias="0.615"
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/editTextLogPassword"
@@ -119,7 +125,8 @@
         app:layout_constraintHorizontal_bias="0.328"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.737" />
+        app:layout_constraintVertical_bias="0.737"
+        tools:ignore="Autofill,HardcodedText" />
 
     <Button
         android:id="@+id/Logbutton"
@@ -134,7 +141,8 @@
         app:layout_constraintHorizontal_bias="0.465"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.842" />
+        app:layout_constraintVertical_bias="0.842"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textView7"
@@ -148,7 +156,8 @@
         app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.904" />
+        app:layout_constraintVertical_bias="0.904"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/singnup"
@@ -163,5 +172,6 @@
         app:layout_constraintHorizontal_bias="0.644"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.948" />
+        app:layout_constraintVertical_bias="0.948"
+        tools:ignore="HardcodedText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

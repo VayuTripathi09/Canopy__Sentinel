@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,7 +20,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="23dp"
-        android:layout_marginRight="25dp">
+        android:layout_marginRight="25dp"
+        tools:ignore="RtlHardcoded">
 
         <TextView
             android:layout_width="match_parent"
@@ -33,7 +33,8 @@
             android:fontFamily="@font/poppins_bold"
             android:text="@string/app_name"
             android:textColor="#2a364e"
-            android:textSize="@dimen/_20sdp" />
+            android:textSize="@dimen/_20sdp"
+            tools:ignore="InefficientWeight" />
 
 
         <ImageView
@@ -57,7 +58,8 @@
         android:layout_marginEnd="232dp"
         android:layout_marginRight="232dp"
         android:layout_marginBottom="37dp"
-        android:src="@drawable/camera" />
+        android:src="@drawable/camera"
+        tools:ignore="RtlHardcoded" />
 
     <ImageView
         android:layout_width="47dp"
@@ -68,7 +70,8 @@
         android:layout_marginEnd="176dp"
         android:layout_marginRight="176dp"
         android:layout_marginBottom="36dp"
-        android:src="@drawable/chat" />
+        android:src="@drawable/chat"
+        tools:ignore="RtlHardcoded" />
 
     <ImageView
         android:id="@+id/settingBut"
@@ -80,6 +83,6 @@
         android:layout_marginEnd="104dp"
         android:layout_marginRight="104dp"
         android:layout_marginBottom="36dp"
-         />
+        tools:ignore="RtlHardcoded" />
 
 </RelativeLayout>

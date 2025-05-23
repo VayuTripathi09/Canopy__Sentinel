@@ -51,7 +51,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    //noinspection UseTomlInstead
     implementation ("com.intuit.sdp:sdp-android:1.1.1")
+    //noinspection UseTomlInstead
     implementation("com.google.android.material:material:1.12.0")
 
 }
