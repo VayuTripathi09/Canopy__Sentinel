@@ -2,31 +2,25 @@ package com.example.canopysentinel;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class login extends AppCompatActivity {
     TextView singnup;
@@ -50,17 +44,17 @@ public class login extends AppCompatActivity {
         });
         singnup = findViewById(R.id.singnup);
         auth = FirebaseAuth.getInstance();
-        button = findViewById(R.id.logbutton);
-        email = findViewById(R.id.editTexLogEmail);
+        button = findViewById(R.id.button);
+        email = findViewById(R.id.textView12);
         password = findViewById(R.id.editTextLogPassword);
-        logsignup = findViewById(R.id.logsignup);
+        logsignup = findViewById(R.id.button);
 
 
 
         logsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(login.this,registration.class);
+                Intent intent = new Intent(login.this,Registration.class);
                 startActivity(intent);
                 finish();
             }

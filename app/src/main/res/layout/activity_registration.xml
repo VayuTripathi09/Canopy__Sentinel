@@ -141,7 +141,7 @@
         tools:ignore="HardcodedText" />
 
     <EditText
-        android:id="@+id/editTextTextPassword1"
+        android:id="@+id/repassword"
         android:layout_width="@dimen/_210sdp"
         android:layout_height="@dimen/_52sdp"
         android:ems="10"
@@ -156,7 +156,7 @@
         tools:ignore="Autofill,HardcodedText" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/editTextPassword2"
         android:layout_width="@dimen/_210sdp"
         android:layout_height="@dimen/_52sdp"
         android:ems="10"
@@ -171,7 +171,7 @@
         tools:ignore="Autofill,HardcodedText" />
 
     <EditText
-        android:id="@+id/editTextTextPassword3"
+        android:id="@+id/remail"
         android:layout_width="@dimen/_210sdp"
         android:layout_height="@dimen/_52sdp"
         android:ems="10"
@@ -186,7 +186,7 @@
         tools:ignore="Autofill,HardcodedText" />
 
     <EditText
-        android:id="@+id/editTextTextPassword4"
+        android:id="@+id/reusername"
         android:layout_width="@dimen/_210sdp"
         android:layout_height="@dimen/_52sdp"
         android:ems="10"

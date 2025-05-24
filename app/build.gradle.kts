@@ -5,13 +5,12 @@ plugins {
 
 android {
     namespace = "com.example.canopysentinel"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.canopysentinel"
         minSdk = 26
-        //noinspection EditedTargetSdkVersion
-        targetSdk = 35
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -20,7 +19,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -31,11 +30,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -48,12 +48,18 @@ dependencies {
     implementation(libs.firebase.storage)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.analytics)
+    
+    // Added lifecycle components
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-livedata:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-runtime:2.7.0")
+    
+    // Added for network connectivity
+    implementation("androidx.lifecycle:lifecycle-process:2.7.0")
+    
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    //noinspection UseTomlInstead
-    implementation ("com.intuit.sdp:sdp-android:1.1.1")
-    //noinspection UseTomlInstead
+    implementation("com.intuit.sdp:sdp-android:1.1.1")
     implementation("com.google.android.material:material:1.12.0")
-
 }

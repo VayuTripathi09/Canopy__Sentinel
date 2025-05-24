@@ -1,192 +1,193 @@
 package com.example.canopysentinel;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.example.canopysentinel.databinding.ActivityRegistrationBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+public class Registration extends AppCompatActivity implements DefaultLifecycleObserver {
+    private ActivityRegistrationBinding binding;
+    private FirebaseAuth auth;
+    private FirebaseDatabase database;
+    private ProgressDialog progressDialog;
+    private final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
-
-public class Registration extends AppCompatActivity {
-    TextView loginbut;
-    EditText rg_username, rg_email , rg_password, rg_repassword;
-    Button rg_signup;
-    CircleImageView rg_profileImg;
-    FirebaseAuth auth;
-    Uri imageURI;
-    String imageuri;
-    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    FirebaseDatabase database;
-    FirebaseStorage storage;
-    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_registration);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        
+        binding = ActivityRegistrationBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        database = FirebaseDatabase.getInstance();
-        storage = FirebaseStorage.getInstance();
-        auth = FirebaseAuth.getInstance();
-        loginbut = findViewById(R.id.loginbut);
-        rg_username = findViewById(R.id.rgusername);
-        rg_email = findViewById(R.id.rgemail);
-        rg_password = findViewById(R.id.rgpassword);
-        rg_repassword = findViewById(R.id.rgrepassword);
-        rg_profileImg = findViewById(R.id.profilerg0);
-        rg_signup = findViewById(R.id.signupbutton);
 
-
-        loginbut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(registration.this,login.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        rg_signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String namee = rg_username.getText().toString();
-                String emaill = rg_email.getText().toString();
-                String Password = rg_password.getText().toString();
-                String cPassword = rg_repassword.getText().toString();
-                String status = "Hey I'm Using This Application";
-
-                if (TextUtils.isEmpty(namee) || TextUtils.isEmpty(emaill) ||
-                        TextUtils.isEmpty(Password) || TextUtils.isEmpty(cPassword)){
-                    progressDialog.dismiss();
-                    Toast.makeText(registration.this, "Please Enter Valid Information", Toast.LENGTH_SHORT).show();
-                }else  if (!emaill.matches(emailPattern)){
-                    progressDialog.dismiss();
-                    rg_email.setError("Type A Valid Email Here");
-                }else if (Password.length()<6){
-                    progressDialog.dismiss();
-                    rg_password.setError("Password Must Be 6 Characters Or More");
-                }else if (!Password.equals(cPassword)){
-                    progressDialog.dismiss();
-                    rg_password.setError("The Password Doesn't Match");
-                }else {
-                    auth.createUserWithEmailAndPassword(emaill,Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()){
-                                String id = task.getResult().getUser().getUid();
-                                DatabaseReference reference = database.getReference().child("user").child(id);
-                                StorageReference storageReference = storage.getReference().child("Upload").child(id);
-
-                                if (imageURI!=null){
-                                    storageReference.putFile(imageURI).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                            if (task.isSuccessful()){
-                                                storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                    @Override
-                                                    public void onSuccess(Uri uri) {
-                                                        imageuri = uri.toString();
-                                                        Users users = new Users(id,namee,emaill,Password,imageuri,status);
-                                                        reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                            @Override
-                                                            public void onComplete(@NonNull Task<Void> task) {
-                                                                if (task.isSuccessful()){
-                                                                    progressDialog.show();
-                                                                    Intent intent = new Intent(registration.this,MainActivity.class);
-                                                                    startActivity(intent);
-                                                                    finish();
-                                                                }else {
-                                                                    Toast.makeText(registration.this, "Error in creating the user", Toast.LENGTH_SHORT).show();
-                                                                }
-                                                            }
-                                                        });
-                                                    }
-                                                });
-                                            }
-                                        }
-                                    });
-                                }else {
-                                    String status = "Hey I'm Using This Application";
-                                    imageuri = "https://firebasestorage.googleapis.com/v0/b/av-messenger-dc8f3.appspot.com/o/man.png?alt=media&token=880f431d-9344-45e7-afe4-c2cafe8a5257";
-                                    Users users = new Users(id,namee,emaill,Password,imageuri,status);
-                                    reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()){
-                                                progressDialog.show();
-                                                Intent intent = new Intent(registration.this,MainActivity.class);
-                                                startActivity(intent);
-                                                finish();
-                                            }else {
-                                                Toast.makeText(registration.this, "Error in creating the user", Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                    });
-                                }
-                            }else {
-                                Toast.makeText(registration.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                }
-
-            }
-        });
-
-
-        rg_profileImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent,"Select Picture"),10);
-            }
-        });
+        initializeFirebase();
+        initializeViews();
+        setupClickListeners();
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==10){
-            if (data!=null){
-                imageURI = data.getData();
-                rg_profileImg.setImageURI(imageURI);
-            }
+    public void onStart(@NonNull LifecycleOwner owner) {
+        if (!isNetworkAvailable()) {
+            Toast.makeText(this, "No internet connection available", Toast.LENGTH_LONG).show();
         }
     }
 
-    private class CircleImageView {
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+        binding = null;
     }
-}
+
+    private void initializeFirebase() {
+        try {
+            database = FirebaseDatabase.getInstance();
+            auth = FirebaseAuth.getInstance();
+        } catch (Exception e) {
+            Toast.makeText(this, "Error connecting to Firebase: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            finish();
+        }
+    }
+
+    private void initializeViews() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please Wait...");
+        progressDialog.setCancelable(false);
+    }
+
+    private void setupClickListeners() {
+        binding.Logbutton.setOnClickListener(v -> {
+            Intent intent = new Intent(Registration.this, Login.class);
+            startActivity(intent);
+            finish();
+        });
+
+        binding.button.setOnClickListener(v -> handleSignUp());
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        }
+        return false;
+    }
+
+    private void handleSignUp() {
+        if (!isNetworkAvailable()) {
+            Toast.makeText(this, "No internet connection available", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        try {
+            String name = binding.reusername.getText().toString().trim();
+            String email = binding.remail.getText().toString().trim();
+            String password = binding.editTextPassword2.getText().toString();
+            String confirmPassword = binding.repassword.getText().toString();
+
+            if (!validateInputs(name, email, password, confirmPassword)) {
+                return;
+            }
+
+            progressDialog.show();
+            registerUser(name, email, password);
+
+        } catch (Exception e) {
+            progressDialog.dismiss();
+            Toast.makeText(this, "Error during sign up: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private boolean validateInputs(String name, String email, String password, String confirmPassword) {
+        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || 
+            TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPassword)) {
+            Toast.makeText(this, "Please Enter Valid Information", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!email.matches(emailPattern)) {
+            binding.remail.setError("Type A Valid Email Here");
+            return false;
+        }
+
+        if (password.length() < 6) {
+            binding.editTextPassword2.setError("Password Must Be 6 Characters Or More");
+            return false;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            binding.repassword.setError("The Password Doesn't Match");
+            return false;
+        }
+
+        return true;
+    }
+
+    private void registerUser(String name, String email, String password) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnSuccessListener(authResult -> {
+                if (authResult.getUser() != null) {
+                    createUserProfile(authResult.getUser().getUid(), name, email, password);
+                } else {
+                    progressDialog.dismiss();
+                    Toast.makeText(Registration.this, "Failed to create account", Toast.LENGTH_SHORT).show();
+                }
+            })
+            .addOnFailureListener(e -> {
+                progressDialog.dismiss();
+                Toast.makeText(Registration.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            });
+    }
+
+    private void createUserProfile(String userId, String name, String email, String password) {
+        try {
+            DatabaseReference reference = database.getReference("user").child(userId);
+            String defaultImageUri = "https://firebasestorage.googleapis.com/v0/b/av-messenger-dc8f3.appspot.com/o/man.png?alt=media&token=880f431d-9344-45e7-afe4-c2cafe8a5257";
+            String status = "Hey I'm Using This Application";
+            
+            Users user = new Users(userId, name, email, password, defaultImageUri, status);
+            
+            reference.setValue(user)
+                .addOnSuccessListener(unused -> {
+                    progressDialog.dismiss();
+                    Intent intent = new Intent(Registration.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                })
+                .addOnFailureListener(e -> {
+                    progressDialog.dismiss();
+                    Toast.makeText(Registration.this, "Error creating profile: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+        } catch (Exception e) {
+            progressDialog.dismiss();
+            Toast.makeText(this, "Error creating user profile: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 }
